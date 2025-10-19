@@ -1,3 +1,4 @@
+-- main table
 CREATE TABLE dbo.orders (
     OrderID INT PRIMARY KEY,
     CustomerID NVARCHAR(50),
@@ -6,7 +7,7 @@ CREATE TABLE dbo.orders (
     Amount FLOAT
 );
 
-
+-- staging table
 CREATE TABLE dbo.temp_orders (
     OrderID INT ,
     CustomerID NVARCHAR(50),
@@ -15,9 +16,8 @@ CREATE TABLE dbo.temp_orders (
     Amount FLOAT
 );
 
-select * from  dbo.temp_orders
 
-
+-- stored procedure for incremental data
 CREATE PROCEDURE sp_upsert_orderss
 AS
 BEGIN
@@ -37,6 +37,7 @@ BEGIN
         VALUES (Source.OrderID, Source.CustomerID, Source.OrderDate, Source.UpdatedDate, Source.Amount);
 END
 
-
+-- check for incremental data updated or not
 select * from dbo.temp_orders
+    
 select * from dbo.orders

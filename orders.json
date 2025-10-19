@@ -1,4 +1,4 @@
--- Source JSON for ADF pipeline. Loaded into temp_orders table in Azure SQL Database.
+
 [
   {
     "OrderID": 1001,
